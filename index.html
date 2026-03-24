@@ -18,8 +18,8 @@ var discardpile =[];
    //functions
    // moved the deck inside a function so we can build shoes and shuffle and such using a for loop
 function buildnewshoe(){
-//var suits = ["♠","♥","♦","♣"]
-var deck = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+var suits = ["♠","♥","♦","♣"]
+var rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 }
 //functions
    //playerhand and dealerhand [] then push value inside
@@ -39,9 +39,9 @@ function drawnewcard(){
 // push to discardpile until no more in the arrays
 function endofround(){
 for (var p = 0; p < playerhand.length; p++){
-    discardpile.push(playerhand[0])}
+    discardpile.push(playerhand[p])}
 for (var d = 0; d < dealerhand.length; d++){
-    discardpile.push(dealerhand[0])}
+    discardpile.push(dealerhand[d])}
 console.log("discardpile now includes" + discardpile.length + ".");
 }
    //end of round goes to lobby or just new round?
