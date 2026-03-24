@@ -1,1 +1,54 @@
-<!-- Start writing your project code in this file! -->
+<script>
+//lobby where we start and here we will make the choice to play the game or not
+var startgame = prompt("whould to like to sit at the table and start playing?");
+var stateofgame = false;
+//bank with money, no celing for betting and no ceiling while playing
+var startingbank = 1000;
+
+//card deck array and shoe with shuffle 
+   //using ranks if graphics? if not no need
+   //shoe = 6 carddecks
+   //Ace could be 1 or 11
+var J = 10;
+var Q = 10;
+var K = 10;
+//var ranks = ["♠","♥","♦","♣"]
+var carddeck = [2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A];
+var shoe =[];
+var discardpile =[];
+//functions
+   //playerhand and dealerhand [] then push value inside
+   var playerhand = [];
+   var dealerhand = [];
+   //drawnewcard with math.floor and math.random choosing a card from the array but rounding down.
+function drawnewcard(){
+    var randomcard = Math.floor(Math.random() * carddeck.length);
+    var card = carddeck [randomcard];
+       //make that card not useable again
+    carddeck.splice(randomcard,1);
+       //give back value to player or dealer
+    return card;
+}
+// push hands to discardpile
+function endofround(){
+discardpile.push [playerhand];
+discardpile.push [dealerhand];
+console.log("discardpile now includes" + discardpile.length + ".");
+}
+   //end of round goes to lobby or just new round?
+//cardcounting function
+   //asign a value to cards, 2-6= +1, 7-9= 0, 10-J-Q-K-A = -1
+   //use the discardpile for cardcounting
+   //choice if using cardcouting or not?
+//startgame
+   //player and dealer drawnewcard
+
+//playing the game in a while loop, IMPORTANT! break; so we dont get infinity loop
+
+var startgame = prompt("whould to like to sit at the table and start playing?");
+
+
+
+
+
+</script>
