@@ -4,35 +4,44 @@ var startgame = prompt("whould to like to sit at the table and start playing?");
 var stateofgame = false;
 //bank with money, no celing for betting and no ceiling while playing
 var startingbank = 1000;
+var bank = startingbank;
+var bet = 0;
 
-//card deck array and shoe with shuffle 
+
+//card deck array and shoe with shuffle
+var shoe =[];
+var discardpile =[];
+
    //using ranks if graphics? if not no need
    //shoe = 6 carddecks
    //Ace could be 1 or 11
-var J = 10;
-var Q = 10;
-var K = 10;
-//var ranks = ["♠","♥","♦","♣"]
-var carddeck = [2, 3, 4, 5, 6, 7, 8, 9, 10, J, Q, K, A];
-var shoe =[];
-var discardpile =[];
+   //functions
+   // moved the deck inside a function so we can build shoes and shuffle and such using a for loop
+function buildnewshoe(){
+//var suits = ["♠","♥","♦","♣"]
+var deck = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+}
 //functions
    //playerhand and dealerhand [] then push value inside
    var playerhand = [];
    var dealerhand = [];
    //drawnewcard with math.floor and math.random choosing a card from the array but rounding down.
 function drawnewcard(){
-    var randomcard = Math.floor(Math.random() * carddeck.length);
-    var card = carddeck [randomcard];
+    var randomcard = Math.floor(Math.random() * deck.length);
+    var card = deck [randomcard];
        //make that card not useable again
     carddeck.splice(randomcard,1);
        //give back value to player or dealer
     return card;
 }
-// push hands to discardpile
+// goes through the player and the dealers hands
+// start at 0 (y) through .lenght of hand adds 1 witch means the next card in the array of hands
+// push to discardpile until no more in the arrays
 function endofround(){
-discardpile.push [playerhand];
-discardpile.push [dealerhand];
+for (var p = 0; p < playerhand.length; p++){
+    discardpile.push(playerhand[0])}
+for (var d = 0; d < dealerhand.length; d++){
+    discardpile.push(dealerhand[0])}
 console.log("discardpile now includes" + discardpile.length + ".");
 }
    //end of round goes to lobby or just new round?
