@@ -6,34 +6,39 @@ var stateofgame = false;
 var startingbank = 1000;
 var bank = startingbank;
 var bet = 0;
-
-
-//card deck array and shoe with shuffle
+var numberofdecks = 6;
+//shoe and discardpile couldnt be inside the function, if it was it would only work inside there not the whole program
 var shoe =[];
 var discardpile =[];
-
-   //using ranks if graphics? if not no need
-   //shoe = 6 carddecks
+   //needed to use suits anyway otherwise i would need to have 4 of every number in the ranks array, technically i could use it and 
+   // i woulndt need to use the second forloop, however if using this the change from going from text to graphics would be easier
    //Ace could be 1 or 11
    //functions
-   // moved the deck inside a function so we can build shoes and shuffle and such using a for loop
+   // moved the deck inside a function so we can build new shoes
 function buildnewshoe(){
+var shoe =[];
+var discardpile =[];
 var suits = ["♠","♥","♦","♣"]
-var rank = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+var ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
+//had to use 
+//as long as deck is < numberofdecks create a new deck and with the varible above i will create 6 decks then inside that loop i make another loop that will create the suits
+// and inside that 2:nd for loop i create a thirde one that creates the rank one.
+// so every rank is created for every suit and all those makes a deck and then i make 6 decks of that
+for (var deck = 0; deck < numberofdecks; deck++){
+    for (var n = 0; n < suits.length; n++){
+        for (var r = 0; r < ranks.length; r++){
+            var suit = suits[n];
+            var rank = ranks [r];
+        }
+    }
 }
-//functions
+console.log(deck[deck]);
+}
+//functions need to be reworked, need a couple diffrent functions for reshuffle, dranewcard(mabye using .pop?), shoeready
+
    //playerhand and dealerhand [] then push value inside
    var playerhand = [];
    var dealerhand = [];
-   //drawnewcard with math.floor and math.random choosing a card from the array but rounding down.
-function drawnewcard(){
-    var randomcard = Math.floor(Math.random() * deck.length);
-    var card = deck [randomcard];
-       //make that card not useable again
-    carddeck.splice(randomcard,1);
-       //give back value to player or dealer
-    return card;
-}
 // goes through the player and the dealers hands
 // start at 0 (y) through .lenght of hand adds 1 witch means the next card in the array of hands
 // push to discardpile until no more in the arrays
@@ -54,7 +59,7 @@ console.log("discardpile now includes" + discardpile.length + ".");
 
 //playing the game in a while loop, IMPORTANT! break; so we dont get infinity loop
 
-var startgame = prompt("whould to like to sit at the table and start playing?");
+
 
 
 
