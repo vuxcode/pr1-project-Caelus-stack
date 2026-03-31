@@ -1,44 +1,73 @@
 <script>
-//lobby where we start and here we will make the choice to play the game or not
-var startgame = prompt("whould to like to sit at the table and start playing?");
-var stateofgame = false;
 //bank with money, no celing for betting and no ceiling while playing
 var startingbank = 1000;
 var bank = startingbank;
 var bet = 0;
 var numberofdecks = 6;
-//shoe and discardpile couldnt be inside the function, if it was it would only work inside there not the whole program
+var reshufflelimit = 60;
+//preparing for later functions
+var shoewasShuffled = false;
+//shoe and discardpile with var here, then without var inside function to not create a local variable inside.
 var shoe =[];
 var discardpile =[];
+ //playerhand and dealerhand [] then push value inside
+var playerhand = [];
+var dealerhand = [];
+var gameactive = false;
    //needed to use suits anyway otherwise i would need to have 4 of every number in the ranks array, technically i could use it and 
    // i woulndt need to use the second forloop, however if using this the change from going from text to graphics would be easier
    //Ace could be 1 or 11
    //functions
    // moved the deck inside a function so we can build new shoes
 function buildnewshoe(){
-var shoe =[];
-var discardpile =[];
+shoe = [];
+discardpile = [];
 var suits = ["♠","♥","♦","♣"]
 var ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"];
 //had to use 
 //as long as deck is < numberofdecks create a new deck and with the varible above i will create 6 decks then inside that loop i make another loop that will create the suits
-// and inside that 2:nd for loop i create a thirde one that creates the rank one.
+// and inside that 2:nd for loop i create a third one that creates the rank one.
 // so every rank is created for every suit and all those makes a deck and then i make 6 decks of that
 for (var deck = 0; deck < numberofdecks; deck++){
     for (var n = 0; n < suits.length; n++){
         for (var r = 0; r < ranks.length; r++){
             var suit = suits[n];
             var rank = ranks [r];
+            var value;
+            // added value for the cards without a number
+            if (rank == "A"){
+                value = 11;}
+                else if (rank == "J" || rank == "Q" || rank == "K"){
+                    value = 10;
+                } else {
+                    value = Number(rank);
+                }
+            shoe.push (ranks + suits);
+            return buildnewshoe;
         }
     }
 }
-console.log(deck[deck]);
+//updated so i could work instead of placeholder
+console.log(shoe.length);
 }
 //functions need to be reworked, need a couple diffrent functions for reshuffle, dranewcard(mabye using .pop?), shoeready
+function reshuffle(){
 
-   //playerhand and dealerhand [] then push value inside
-   var playerhand = [];
-   var dealerhand = [];
+}
+function drawnewcard(){
+    return shoe.pop();
+}
+function shoeready(){
+
+}
+function lobby(){
+
+}
+function startround(){
+
+}
+
+
 // goes through the player and the dealers hands
 // start at 0 (y) through .lenght of hand adds 1 witch means the next card in the array of hands
 // push to discardpile until no more in the arrays
