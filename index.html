@@ -42,17 +42,30 @@ for (var deck = 0; deck < numberofdecks; deck++){
                 } else {
                     value = Number(rank);
                 }
-            shoe.push (ranks + suits);
-            return buildnewshoe;
+            // fixed a problem that i saved ranks insted of rank and the same for suit...   
+            shoe.push (rank + suit);
         }
     }
 }
-//updated so i could work instead of placeholder
+shufflearray(shoe);
+shoewasShuffled = true;
 console.log(shoe.length);
+
 }
 //functions need to be reworked, need a couple diffrent functions for reshuffle, dranewcard(mabye using .pop?), shoeready
-function reshuffle(){
 
+// function recives array, with the forloop i start from the last input in the array and loop until the first one
+//randomid using verison of math.floor ive used before. 
+// saves the value of i in tempN
+// i gets the value that is on randomid, the old value of i is now in randomid, the 2 have now changed place
+// this means, every time it loops a random place i chosen in the array, that value is changed to value of place i
+// and this goes on untill the whole array is randomly mixed
+function shufflearray(array){
+    for (var i = array.length - 1; i > 0; i--){
+    var randomid = Math.floor(Math.random() * (i+1));
+    var tempN = array[i];
+    array[i] = array[randomid];
+    array[randomid] = tempN;}
 }
 function drawnewcard(){
     return shoe.pop();
