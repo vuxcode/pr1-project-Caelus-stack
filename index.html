@@ -41,9 +41,13 @@ for (var deck = 0; deck < numberofdecks; deck++){
                     value = 10;
                 } else {
                     value = Number(rank);
-                }
-            // fixed a problem that i saved ranks insted of rank and the same for suit...   
-            shoe.push (rank + suit);
+                } 
+            // before the player would have to read the text in the string and figure out the value of hand. 
+            shoe.push({
+                rank: rank,
+                suit: suit,
+                value: value
+});
         }
     }
 }
@@ -66,34 +70,98 @@ function shufflearray(array){
     var tempN = array[i];
     array[i] = array[randomid];
     array[randomid] = tempN;}
+    console.log(array.length);
 }
 function drawnewcard(){
     return shoe.pop();
 }
 function shoeready(){
-
+    if (shoe.length <= reshufflelimit){
+        buildnewshoe();
+    }
 }
-function lobby(){
+function showlobby(){ 
+    if (playerhand.length > 0 || dealerhand.length > 0){
+        movehandtoDiscard();}
 
+    if (bank <= 0){
+        gameover();
+        return;
+    }
 }
-function startround(){
-
+function gameover(){
+    var result = bank - startingbank;
+    if (result < 0){
+        alert("Game over!" + "\n you have no money left!" + "\n you lost" + Math.abs(result));
+    }
+    else if (result > 0){
+        alert("Game over!" + "\n you won " + result + " dollars");
+    }
+    else {
+         alert("Game over!" + "\n you ended the game with the same amount of money");
+    }
 }
-
-
 // goes through the player and the dealers hands
 // start at 0 (y) through .lenght of hand adds 1 witch means the next card in the array of hands
 // push to discardpile until no more in the arrays
-function endofround(){
+function movehandtoDiscard(){
 for (var p = 0; p < playerhand.length; p++){
-    discardpile.push(playerhand[p])}
+    discardpile.push(playerhand[p]);
+}
 for (var d = 0; d < dealerhand.length; d++){
-    discardpile.push(dealerhand[d])}
+    discardpile.push(dealerhand[d]);
+}
+// empty the hands
+playerhand = [];
+dealerhand = [];
+
 console.log("discardpile now includes" + discardpile.length + ".");
 }
+
+//moved the hit and stay funtction so its not inside the startround function
+function hit(){
+    if (gameactive == false){
+        return;}
+    var newcard = drawnewcard();
+    playerhand.push(newcard);}
+
+    function stay(){
+
+}
+
+function calcHandValue(){
+
+}
+
+
+function startround(){
+    shoeready();
+    var betinput = prompt("you have " + bank + " dollars. how much you wanna bet?");
+    if (betinput == null){
+        showlobby();
+        return;}
+        betinput = Number(betinput);
+
+        while(isNaN(betinput) || betinput <= 0 || betinput > bank){
+            betinput = prompt("invalid bet. choose a number between 1 and " + bank);
+            if (betinput == null){
+                showlobby();
+                return;}
+        }
+    
+    gameactive = true;
+    
+    playerhand=[];
+    dealerhand=[];
+
+    playerhand.push(drawnewcard());
+    playerhand.push(drawnewcard());
+    dealerhand.push(drawnewcard());
+    dealerhand.push(drawnewcard());
+
+    }
    //end of round goes to lobby or just new round?
 //cardcounting function
-   //asign a value to cards, 2-6= +1, 7-9= 0, 10-J-Q-K-A = -1
    //use the discardpile for cardcounting
    //choice if using cardcouting or not?
 //startgame
@@ -103,8 +171,12 @@ console.log("discardpile now includes" + discardpile.length + ".");
 
 
 
-
-
+// what to do
+//1. fix calcHandValue
+//2. finish hit
+//3. build stay()
+//4. build a function handToText for showing the player the value
+//5.while loop to ask the player if betting, hit/stay, decide winner and ask for new round.
 
 
 </script>
