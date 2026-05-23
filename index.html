@@ -129,7 +129,10 @@ console.log("discardpile now includes" + discardpile.length + ".");
 
 //moved the hit and stay funtction so its not inside the startround function
 function hit(){
+    console.log("hit is running");
+
     if (gameactive == false){
+        console.log("hit stopped, gameactive is false");
         return;}
     var newcard = drawnewcard();
     console.log("player drw this card", newcard);
