@@ -147,6 +147,21 @@ dealerhand = [];
 
 console.log("discardpile now includes" + discardpile.length + ".");
 }
+//shows cards as string
+function handToText(hand){
+    var text = "";
+
+    for(var i = 0; i < hand.length; i++){
+        text = text + hand[i].rank + hand[i].suit;
+
+        if(i < hand.length - 1){
+            text = text + ", ";
+        }
+    }
+
+    return text;
+}
+//hit function for drawing a new card
 function hit(){
     console.log("hit is running");
 
@@ -163,6 +178,7 @@ function hit(){
     playerhand.push(newcard);
     console.log("playerhand after hit", playerhand);
 }
+//stay function for passing the choice the next player, if none = checkwinner
 function stay(){
     if(gameactive == false){
         console.log(" stay stopped, gameactive is false");
@@ -215,10 +231,10 @@ function startround(){
     dealerhand=[];
     console.log("hands have been cleared");
 
-    playerhand.push(drawnewcard());
-    playerhand.push(drawnewcard());
-    dealerhand.push(drawnewcard());
-    dealerhand.push(drawnewcard());
+   playerhand.push(drawnewcard("player"));
+   playerhand.push(drawnewcard("player"));
+   dealerhand.push(drawnewcard("dealer starting card"));
+   dealerhand.push(drawnewcard("dealer starting card"));
 
     console.log("starting cards have been dealt");
     console.log("playerhand is", playerhand);
@@ -274,7 +290,7 @@ var dealervalue = calcHandValue(dealerhand);
 while(dealervalue < playervalue && dealervalue < 21){
 console.log("dealer value less than player, dealer draws a card");
 
-var newcard = drawnewcard();
+var newcard = drawnewcard("dealer draw");
 dealerhand.push(newcard);
 dealervalue = calcHandValue(dealerhand);
 console.log("dealervalue after new card");
@@ -283,6 +299,7 @@ console.log("dealer stops drawing");
 console.log("dealervalue is now", dealervalue);
 
 }
+// cheking for who won
 function checkwinner(){
     console.log("checkwinner is running");
 
@@ -314,11 +331,11 @@ function checkwinner(){
 }
 
 // what to do
-//1. build stay()
-//2. build a function handToText for showing the player the value
-//3. dealer AI
+//1. finish build a function handToText for showing the player the value, TESTING
+//2. make alerts to player to make choices
+//3. 
 //4. 
-//5.while loop to ask the player if betting, hit/stay, decide winner and ask for new round.
+//5.
 
 
 //testing
