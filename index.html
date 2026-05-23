@@ -47,12 +47,11 @@ for (var deck = 0; deck < numberofdecks; deck++){
             shoe.push({
                 rank: rank,
                 suit: suit,
-                value: value
-});
+                value: value});
         }
     }
-    console.log("new shoe created, number of cards", shoe.length);
 }
+console.log("new shoe created, number of cards", shoe.length);
 shufflearray(shoe);
 shoewasShuffled = true;
 console.log(shoe.length);
