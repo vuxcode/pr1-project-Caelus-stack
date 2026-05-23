@@ -148,22 +148,32 @@ function calcHandValue(){
 
 function startround(){
     console.log("startround is running");
+
     shoeready();
+
     var betinput = prompt("you have " + bank + " dollars. how much you wanna bet?");
+    
     if (betinput == null){
         console.log("player cancelled the bet, returning to lobby");
         showlobby();
         return;}
+
         betinput = Number(betinput);
+        console.log("betinput after number", betinput);
 
         while(isNaN(betinput) || betinput <= 0 || betinput > bank){
             betinput = prompt("invalid bet. choose a number between 1 and " + bank);
+
             if (betinput == null){
                 showlobby();
                 return;}
+            betinput = Number(betinput);
+            console.log("new bet input aafter number")
         }
-    
+    bet = betinput;
+
     gameactive = true;
+    console.log("game active", gameactive);
     
     playerhand=[];
     dealerhand=[];
