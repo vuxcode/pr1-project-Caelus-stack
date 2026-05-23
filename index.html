@@ -201,11 +201,18 @@ while(gameactive == true && playerstays == false){
 
     var choice1 = prompt("Do you want to hit or stay?");
 
-    if(choice1 == "hit"){
+    if (choice1 != "hit" && choice1 != "stay"){
+        console.log("player cancelled");
+        alert(" you have already placed a bet \n chose hit or stay");
+        continue;
+    }
+
+    else if(choice1 == "hit"){
         hit();
 
         if(calcHandValue(playerhand) > 21) {
             console.log("player busted");
+            gameactive == false;
         }
         
     }   
