@@ -146,7 +146,13 @@ function stay(){
 }
 
 function calcHandValue(){
-
+console.log("calchandvalue is running");
+var total = 0;
+for(var i = 0; i < hand.length; i++){
+total = total + hand[i].value;
+}
+console.log("hand value:", total);
+return total;
 }
 
 
