@@ -201,10 +201,10 @@ while(gameactive == true && playerstays == false){
 
     var choice1 = prompt("Do you want to hit or stay?");
 
-    if(choice == "hit"){
+    if(choice1 == "hit"){
         hit();
 
-        if(calcHandValue(playerhand)) > 21 {
+        if(calcHandValue(playerhand) > 21) {
             console.log("player busted");
         }
         
