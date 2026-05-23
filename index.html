@@ -230,7 +230,32 @@ function dealerturn(){
 
 }
 function checkwinner(){
+    console.log("checkwinner is running");
 
+    var playervalue = calcHandValue(playerhand);
+    var dealervalue = calcHandValue(dealerhand);
+
+    if (playervalue > 21){
+        console.log("player busted and loses", bet);
+        bank = bank - bet;
+    }
+    else if (dealervalue > 21){
+        console.log("dealer busted, player winns");
+        bank = bank + bet;
+    }
+    else if (playervalue > dealervalue){
+        console.log("player wins");
+        bank = bank + bet;
+    }
+    else if (playervalue < dealervalue){
+        console.log("dealer wins");
+        bank = bank - bet;
+    }
+    else {
+        console.log("push, no money changes");
+    }
+    gameactive = false;
+    console.log("round is over");
 }
 
 // what to do
