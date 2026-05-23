@@ -137,7 +137,7 @@ function hit(){
     console.log("playerhand after hit", playerhand);
 }
 
-    function stay(){
+function stay(){
 
 }
 
@@ -147,9 +147,11 @@ function calcHandValue(){
 
 
 function startround(){
+    console.log("startround is running");
     shoeready();
     var betinput = prompt("you have " + bank + " dollars. how much you wanna bet?");
     if (betinput == null){
+        console.log("player cancelled the bet, returning to lobby");
         showlobby();
         return;}
         betinput = Number(betinput);
@@ -165,11 +167,21 @@ function startround(){
     
     playerhand=[];
     dealerhand=[];
+    console.log("hands are cleared");
+    console.log("playerhand before cards", playerhand);
+    console.log("dealerhand before cards", dealerhand);
 
     playerhand.push(drawnewcard());
     playerhand.push(drawnewcard());
     dealerhand.push(drawnewcard());
     dealerhand.push(drawnewcard());
+
+    console.log("starting cards have been dealt");
+    console.log("playerhand is", playerhand);
+    console.log("dealerhand is", dealerhand);
+    console.log("cards left in shoe", shoe.length);
+    console.log("current bet is", bet);
+
 
     }
    //end of round goes to lobby or just new round?
