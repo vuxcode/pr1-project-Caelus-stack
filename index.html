@@ -77,10 +77,16 @@ function shufflearray(array){
 }
 function drawnewcard(){
     return shoe.pop();
+    console.log("card drawn:", newcard);
+    console.log("cards after draw:", shoe.length);
 }
 function shoeready(){
+    console.log("cards in shoe:", shoe.length);
     if (shoe.length <= reshufflelimit){
         buildnewshoe();
+    }
+    else{
+        console.log("shoe is ready");
     }
 }
 function showlobby(){ 
