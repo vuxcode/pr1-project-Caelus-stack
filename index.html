@@ -87,6 +87,40 @@ function showlobby(){
         return;
     }
 }
+function startgame(){
+    console.log("start game is now running");
+    buildnewshoe();
+    var keepplaying = true;
+    while(keepplaying == true && bank > 0){
+        console.log("new round will start");
+        startround();
+
+        if (bank <= 0){
+            gameover();
+            keepplaying = false;
+        }
+        else{
+
+            var newround = prompt("you have: " + bank + " dollars. \n do you want to play another round?");
+
+            while(newround != "yes" && newround != "no"){
+                newround = prompt("invalid choice, choose yes or now");
+            }
+            if (newround == "no"){
+                console.log("player chose to stop playing");
+                gameover();
+                keepplaying = false;
+            }
+            else{
+                console.log("player chose to keep playing");
+
+                if(playerhand.length > 0 || dealerhand.length > 0){
+                    movehandtoDiscard();
+                }
+            }
+        }
+    }
+}
 function gameover(){
     var result = bank - startingbank;
     if (result < 0){
@@ -237,7 +271,7 @@ console.log("dealerhand before turn", dealerhand);
 var playervalue = calcHandValue(playerhand);
 var dealervalue = calcHandValue(dealerhand);
 
-while(dealervalue < playervalue && dealerhand < 21){
+while(dealervalue < playervalue && dealervalue < 21){
 console.log("dealer value less than player, dealer draws a card");
 
 var newcard = drawnewcard();
@@ -288,8 +322,6 @@ function checkwinner(){
 
 
 //testing
-buildnewshoe();
-startround();
-
+startgame();
 
 </script>
