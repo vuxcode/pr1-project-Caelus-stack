@@ -134,6 +134,7 @@ function hit(){
     if (gameactive == false){
         console.log("hit stopped, gameactive is false");
         return;}
+    console.log("playerhand before hit", playerhand);
     var newcard = drawnewcard();
     console.log("player drw this card", newcard);
     playerhand.push(newcard);
