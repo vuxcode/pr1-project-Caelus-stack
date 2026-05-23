@@ -63,9 +63,10 @@ function shufflearray(array){
 }
 //draws a card from the shoe
 function drawnewcard(){
-    return shoe.pop();
+    var newcard = shoe.pop();
     console.log("card drawn:", newcard);
     console.log("cards after draw:", shoe.length);
+    return newcard;
 }
 //checks if the shoe is ready
 function shoeready(){
@@ -223,10 +224,29 @@ while(gameactive == true && playerstays == false){
     }   
         else if ( choice1 == "stay"){
             stay();
+            dealerturn();
+            checkwinner();
+            return;
         }
     }
 }
 function dealerturn(){
+console.log("dealerturn is running");
+console.log("dealerhand before turn", dealerhand);
+
+var playervalue = calcHandValue(playerhand);
+var dealervalue = calcHandValue(dealerhand);
+
+while(dealervalue < playervalue && dealerhand < 21){
+console.log("dealer value less than player, dealer draws a card");
+
+var newcard = drawnewcard();
+dealerhand.push(newcard);
+dealervalue = calcHandValue(dealerhand);
+console.log("dealervalue after new card");
+}
+console.log("dealer stops drawing");
+console.log("dealervalue is now", dealervalue);
 
 }
 function checkwinner(){
@@ -256,6 +276,7 @@ function checkwinner(){
     }
     gameactive = false;
     console.log("round is over");
+    console.log("bank is now", bank);
 }
 
 // what to do
@@ -264,6 +285,11 @@ function checkwinner(){
 //3. dealer AI
 //4. 
 //5.while loop to ask the player if betting, hit/stay, decide winner and ask for new round.
+
+
+//testing
+buildnewshoe();
+startround();
 
 
 </script>
