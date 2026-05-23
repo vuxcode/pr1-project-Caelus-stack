@@ -118,6 +118,10 @@ function hit(){
     if (gameactive == false){
         console.log("hit stopped, gameactive is false");
         return;}
+    if (calcHandValue(playerhand) > 21){
+        console.log("hit stopped, playerhand is above 21");
+        return;
+    }
     console.log("playerhand before hit", playerhand);
     var newcard = drawnewcard();
     console.log("player drw this card", newcard);
@@ -212,7 +216,8 @@ while(gameactive == true && playerstays == false){
 
         if(calcHandValue(playerhand) > 21) {
             console.log("player busted");
-            gameactive == false;
+            checkwinner();
+            return;
         }
         
     }   
@@ -224,7 +229,9 @@ while(gameactive == true && playerstays == false){
 function dealerturn(){
 
 }
+function checkwinner(){
 
+}
 
 // what to do
 //1. build stay()
