@@ -132,7 +132,10 @@ function hit(){
     if (gameactive == false){
         return;}
     var newcard = drawnewcard();
-    playerhand.push(newcard);}
+    console.log("player drw this card", newcard);
+    playerhand.push(newcard);
+    console.log("playerhand after hit", playerhand);
+}
 
     function stay(){
 
