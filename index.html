@@ -1,24 +1,16 @@
 <script>
-//bank with money, no celing for betting and no ceiling while playing
 var startingbank = 1000;
 var bank = startingbank;
 var bet = 0;
 var numberofdecks = 6;
 var reshufflelimit = 60;
-//preparing for later functions
 var shoewasShuffled = false;
-//shoe and discardpile with var here, then without var inside function to not create a local variable inside.
 var shoe =[];
 var discardpile =[];
- //playerhand and dealerhand [] then push value inside
 var playerhand = [];
 var dealerhand = [];
 var gameactive = false;
-   //needed to use suits anyway otherwise i would need to have 4 of every number in the ranks array, technically i could use it and 
-   // i woulndt need to use the second forloop, however if using this the change from going from text to graphics would be easier
-   //Ace could be 1 or 11
-   //functions
-   // moved the deck inside a function so we can build new shoes
+//builds the shoe 
 function buildnewshoe(){
     console.log("buildnewshoe is running");
 shoe = [];
@@ -57,14 +49,7 @@ shoewasShuffled = true;
 console.log(shoe.length);
 
 }
-//functions need to be reworked, need a couple diffrent functions for reshuffle, dranewcard(mabye using .pop?), shoeready
-
-// function recives array, with the forloop i start from the last input in the array and loop until the first one
-//randomid using verison of math.floor ive used before. 
-// saves the value of i in tempN
-// i gets the value that is on randomid, the old value of i is now in randomid, the 2 have now changed place
-// this means, every time it loops a random place i chosen in the array, that value is changed to value of place i
-// and this goes on untill the whole array is randomly mixed
+//shuffeling the shoe
 function shufflearray(array){
     console.log("shufflearray isrunning");
     for (var i = array.length - 1; i > 0; i--){
@@ -75,11 +60,13 @@ function shufflearray(array){
     console.log("shuffle completed");
     console.log(array.length);
 }
+//draws a card from the shoe
 function drawnewcard(){
     return shoe.pop();
     console.log("card drawn:", newcard);
     console.log("cards after draw:", shoe.length);
 }
+//checks if the shoe is ready
 function shoeready(){
     console.log("cards in shoe:", shoe.length);
     if (shoe.length <= reshufflelimit){
@@ -110,9 +97,7 @@ function gameover(){
          alert("Game over!" + "\n you ended the game with the same amount of money");
     }
 }
-// goes through the player and the dealers hands
-// start at 0 (y) through .lenght of hand adds 1 witch means the next card in the array of hands
-// push to discardpile until no more in the arrays
+//moves the hand to discard pile
 function movehandtoDiscard(){
 for (var p = 0; p < playerhand.length; p++){
     discardpile.push(playerhand[p]);
@@ -126,8 +111,6 @@ dealerhand = [];
 
 console.log("discardpile now includes" + discardpile.length + ".");
 }
-
-//moved the hit and stay funtction so its not inside the startround function
 function hit(){
     console.log("hit is running");
 
@@ -140,11 +123,9 @@ function hit(){
     playerhand.push(newcard);
     console.log("playerhand after hit", playerhand);
 }
-
 function stay(){
 
 }
-
 function calcHandValue(hand){
 console.log("calchandvalue is running");
 var total = 0;
@@ -154,8 +135,6 @@ total = total + hand[i].value;
 console.log("hand value:", total);
 return total;
 }
-
-
 function startround(){
     console.log("startround is running");
 
