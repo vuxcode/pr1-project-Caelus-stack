@@ -10,6 +10,7 @@ var discardpile =[];
 var playerhand = [];
 var dealerhand = [];
 var gameactive = false;
+var playerstays = false;
 //builds the shoe 
 function buildnewshoe(){
     console.log("buildnewshoe is running");
@@ -124,7 +125,12 @@ function hit(){
     console.log("playerhand after hit", playerhand);
 }
 function stay(){
-
+    if(gameactive == false){
+        console.log(" stay stopped, gameactive is false");
+        return;
+    }
+console.log("player chose to stay \n playerhand is", playerhand);
+playerstays = true;
 }
 function calcHandValue(hand){
 console.log("calchandvalue is running");
@@ -183,22 +189,15 @@ function startround(){
 
 
     }
-   //end of round goes to lobby or just new round?
-//cardcounting function
-   //use the discardpile for cardcounting
-   //choice if using cardcouting or not?
-//startgame
-   //player and dealer drawnewcard
 
-//playing the game in a while loop, IMPORTANT! break; so we dont get infinity loop
 
 
 
 // what to do
-//1. fix calcHandValue
-//2. finish hit
-//3. build stay()
-//4. build a function handToText for showing the player the value
+//1. build stay()
+//2. build a function handToText for showing the player the value
+//3. dealer AI
+//4. 
 //5.while loop to ask the player if betting, hit/stay, decide winner and ask for new round.
 
 
