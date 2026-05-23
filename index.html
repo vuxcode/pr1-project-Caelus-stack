@@ -187,10 +187,36 @@ function startround(){
     console.log("cards left in shoe", shoe.length);
     console.log("current bet is", bet);
 
+    playerturn();
+
 
     }
+function playerturn(){
+console.log("playerturn is running");
 
+playerstays = false;
+while(gameactive == true && playerstays == false){
+    console.log("playerhand is", playerhand);
+    console.log("playerhand value is", calcHandValue(playerhand));
 
+    var choice1 = prompt("Do you want to hit or stay?");
+
+    if(choice == "hit"){
+        hit();
+
+        if(calcHandValue(playerhand)) > 21 {
+            console.log("player busted");
+        }
+        
+    }   
+        else if ( choice1 == "stay"){
+            stay();
+        }
+    }
+}
+function dealerturn(){
+
+}
 
 
 // what to do
