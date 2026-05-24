@@ -203,10 +203,10 @@ total = total + hand[i].value;
 if(hand[i].rank == "A"){
     aces = aces + 1;
 }
+}
 while(total > 21 && aces > 0){
     total = total - 10;
     aces = aces - 1;
-}
 }
 console.log("hand value:", total);
 return total;
