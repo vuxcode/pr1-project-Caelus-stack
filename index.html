@@ -196,8 +196,17 @@ playerstays = true;
 function calcHandValue(hand){
 console.log("calchandvalue is running");
 var total = 0;
+var aces = 0;
 for(var i = 0; i < hand.length; i++){
 total = total + hand[i].value;
+
+if(hand[i].rank == "A"){
+    aces = aces + 1;
+}
+while(total > 21 && aces > 0){
+    total = total - 10;
+    aces = aces - 1;
+}
 }
 console.log("hand value:", total);
 return total;
@@ -224,7 +233,7 @@ function startround(){
                 showlobby();
                 return;}
             betinput = Number(betinput);
-            console.log("new bet input aafter number")
+            console.log("new bet input after number")
         }
     bet = betinput;
 
@@ -362,11 +371,11 @@ function checkwinner(){
 }
 
 // what to do
-//1. finish build a function handToText for showing the player the value, TESTING
-//2. make alerts to player to make choices
+//1. aces becomes 1 if busted
+//2. 
 //3. 
 //4. 
-//5.
+//5.button?
 
 
 //testing
