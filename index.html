@@ -90,6 +90,8 @@ function showlobby(){
 function startgame(){
     console.log("start game is now running");
     buildnewshoe();
+    alert("Welcome to the casino, where dreams are met or crushed");
+    alert("you sit down at the blackjack table");
     var keepplaying = true;
     while(keepplaying == true && bank > 0){
         console.log("new round will start");
@@ -177,6 +179,7 @@ function hit(){
     console.log("player drw this card", newcard);
     playerhand.push(newcard);
     console.log("playerhand after hit", playerhand);
+    alert("You drew " + newcard.rank + newcard.suit);
 }
 //stay function for passing the choice the next player, if none = checkwinner
 function stay(){
@@ -185,6 +188,9 @@ function stay(){
         return;
     }
 console.log("player chose to stay \n playerhand is", playerhand);
+ alert(
+        "You chose to stay. Now its the dealers turn"
+    );
 playerstays = true;
 }
 function calcHandValue(hand){
@@ -242,6 +248,12 @@ function startround(){
     console.log("cards left in shoe", shoe.length);
     console.log("current bet is", bet);
 
+    alert(
+        "Round started, your bet is " + bet +
+        "\n Your hand is showing " + handToText(playerhand) + " a value of " + calcHandValue(playerhand) +
+        "\n dealer shows " + dealerhand[0].rank + dealerhand[0].suit 
+    );
+
     playerturn();
 
 
@@ -254,7 +266,11 @@ while(gameactive == true && playerstays == false){
     console.log("playerhand is", playerhand);
     console.log("playerhand value is", calcHandValue(playerhand));
 
-    var choice1 = prompt("Do you want to hit or stay?");
+    var choice1 = prompt(
+        "\n Your hand is showing " + handToText(playerhand) + " a value of " + calcHandValue(playerhand) +
+        "\n dealer shows " + dealerhand[0].rank + dealerhand[0].suit +
+        "\n hit or stay"
+    );
 
     if (choice1 != "hit" && choice1 != "stay"){
         console.log("player cancelled");
@@ -293,11 +309,20 @@ console.log("dealer value less than player, dealer draws a card");
 var newcard = drawnewcard("dealer draw");
 dealerhand.push(newcard);
 dealervalue = calcHandValue(dealerhand);
+alert(
+        "Dealer drew: " + newcard.rank + newcard.suit +
+        "\nDealer hand: " + handToText(dealerhand) +
+        "\nDealer value: " + dealervalue
+        );
 console.log("dealervalue after new card");
 }
 console.log("dealer stops drawing");
 console.log("dealervalue is now", dealervalue);
-
+alert(
+        "Dealer stops drawing." +
+        "\nDealer hand: " + handToText(dealerhand) +
+        "\nDealer value: " + dealervalue
+    );
 }
 // cheking for who won
 function checkwinner(){
@@ -305,24 +330,29 @@ function checkwinner(){
 
     var playervalue = calcHandValue(playerhand);
     var dealervalue = calcHandValue(dealerhand);
-
+    var resulttext = "";
     if (playervalue > 21){
+        resulttext = "you busted and loses", bet;
         console.log("player busted and loses", bet);
         bank = bank - bet;
     }
     else if (dealervalue > 21){
+        resulttext = "Dealer busted you win ", bet;
         console.log("dealer busted, player winns");
         bank = bank + bet;
     }
     else if (playervalue > dealervalue){
+        resulttext = "You won";
         console.log("player wins");
         bank = bank + bet;
     }
     else if (playervalue < dealervalue){
+        resulttext = "Dealer won";
         console.log("dealer wins");
         bank = bank - bet;
     }
     else {
+        resulttext = "Push! nobody won and you get your money back!";
         console.log("push, no money changes");
     }
     gameactive = false;
