@@ -332,12 +332,12 @@ function checkwinner(){
     var dealervalue = calcHandValue(dealerhand);
     var resulttext = "";
     if (playervalue > 21){
-        resulttext = "you busted and loses", bet;
+        resulttext = "you busted and lose " + bet + " dollars.";
         console.log("player busted and loses", bet);
         bank = bank - bet;
     }
     else if (dealervalue > 21){
-        resulttext = "Dealer busted you win ", bet;
+        resulttext = "Dealer busted you win " + bet + " dollars.";
         console.log("dealer busted, player winns");
         bank = bank + bet;
     }
