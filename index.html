@@ -342,12 +342,12 @@ function checkwinner(){
         bank = bank + bet;
     }
     else if (playervalue > dealervalue){
-        resulttext = "You won";
+        resulttext = "You won " + bet + " dollars.";
         console.log("player wins");
         bank = bank + bet;
     }
     else if (playervalue < dealervalue){
-        resulttext = "Dealer won";
+        resulttext = "Dealer won. You lost " + bet + " dollars.";
         console.log("dealer wins");
         bank = bank - bet;
     }
@@ -355,6 +355,7 @@ function checkwinner(){
         resulttext = "Push! nobody won and you get your money back!";
         console.log("push, no money changes");
     }
+    alert(resulttext);
     gameactive = false;
     console.log("round is over");
     console.log("bank is now", bank);
